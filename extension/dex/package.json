@@ -1,13 +1,13 @@
 {
-  "name": "dex",
+  "name": "dex-protheus",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
   "version": "1.0.0",
-  "publisher": "sordi",
+  "publisher": "GuilhermedeSordi-Totvs",
   "license": "SEE LICENSE IN license.MD",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gdesordi/dex-ai/"
+    "url": "https://github.com/sordi-totvs/dex-protheus/"
   },
   "icon": "media/dex-icon.png",
   "engines": {

@@ -1,7 +1,7 @@
 {
-  "extension.displayName": "Dex",
-  "extension.description": "Dex extension for Visual Studio Code.",
-  "command.category": "Dex",
+  "extension.displayName": "Dex Protheus",
+  "extension.description": "Dex Protheus extension for Visual Studio Code.",
+  "command.category": "Dex Protheus",
   "command.downloadSkills.title": "Download skills",
   "command.openSkillsFolder.title": "Open skills folder",
   "command.addSkillsToWorkspace.title": "Add Skills to Workspace",

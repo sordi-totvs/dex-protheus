@@ -7,6 +7,11 @@ Semântico.
 
 ## [Não publicado]
 
+### Alterado
+
+- Rebranding da extensão para Dex Protheus, com novo ícone em tons de vermelho.
+- Atualização da origem de download das skills para o repositório `sordi-totvs/dex-protheus`.
+
 ### Adicionado
 
 - Scripts npm para empacotar e publicar a extensão com `vsce`.

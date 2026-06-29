@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
 
 const skillsTreeUrl =
-  'https://api.github.com/repos/gdesordi/dex-ai/git/trees/main?recursive=1';
+  'https://api.github.com/repos/sordi-totvs/dex-protheus/git/trees/main?recursive=1';
 const rawRepositoryUrl =
-  'https://raw.githubusercontent.com/gdesordi/dex-ai/main';
+  'https://raw.githubusercontent.com/sordi-totvs/dex-protheus/main';
 const skillsManifestUrl = `${rawRepositoryUrl}/skills/dex.json`;
 const skillsChangelogUrl = `${rawRepositoryUrl}/skills/changelog.md`;
 const lastUpdateCheckKey = 'dex.skills.lastUpdateCheckAt';
