@@ -1,0 +1,16 @@
+/*/{Protheus.doc} Coverage{{CLASS_NAME}}_{{PURPOSE}}
+    @description Classe derivada de {{ORIGINAL_CLASS}} para expor método {{PROTECTED_METHOD}} (protegido/privado) via herança. Usada para cobertura de testes.
+    @type class
+    @author coverage-generator
+    @since {{DATE}}
+    @version {{VERSION}}
+/*/
+class Coverage{{CLASS_NAME}}_{{PURPOSE}} from {{ORIGINAL_CLASS}}
+    public method {{PROTECTED_METHOD}}_exposed() as {{RETURN_TYPE}}
+endclass
+
+method {{PROTECTED_METHOD}}_exposed() as {{RETURN_TYPE}} class Coverage{{CLASS_NAME}}_{{PURPOSE}}
+    // Expõe método protegido/privado da superclasse
+    // Chamada com {{PARAM_COUNT}} parâmetro(s): {{PARAM_LIST}}
+    return ::{{PROTECTED_METHOD}}({{PARAM_FORWARDS}})
+endmethod

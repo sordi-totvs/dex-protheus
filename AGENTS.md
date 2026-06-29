@@ -33,12 +33,12 @@ npm run check
   corresponder ao nome do diretório.
 - Recursos específicos do agente podem ficar em `skills/<nome>/agents/`.
 - Não altere o comportamento de outra skill sem que isso faça parte do escopo.
-- Preserve os arquivos `skills/dex.json` e `skills/changelog.md` na raiz do
+- Preserve os arquivos `skills/dex-protheus.json` e `skills/changelog.md` na raiz do
   catálogo, pois eles também são distribuídos pela extensão.
 
 ## Versionamento do catálogo
 
-- `skills/dex.json` é a fonte oficial da versão, no campo `skillsVersion`.
+- `skills/dex-protheus.json` é a fonte oficial da versão, no campo `skillsVersion`.
 - Use Versionamento Semântico: `MAJOR.MINOR.PATCH`.
 - Mudanças incompatíveis incrementam `MAJOR`; novas funcionalidades compatíveis
   incrementam `MINOR`; correções compatíveis incrementam `PATCH`.

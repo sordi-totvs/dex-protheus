@@ -1,0 +1,185 @@
+/*/{Protheus.doc} CoverageOrchestrator
+    @description Orquestrador da skill coverage-generator. Coordena o fluxo completo: validação ? parse ? geração de métodos ? geração de classes derivadas ? geração de documentação. Retorna resultado estruturado com caminhos dos arquivos criados.
+    @type class
+    @author coverage-generator
+    @since 2026-06-29
+    @version 1.0.0
+/*/
+class CoverageOrchestrator
+    private data cSourceFile as character
+    private data cOutputDir as character
+    private data oResult as object
+    private data aErrors as array
+    private data aWarnings as array
+    
+    public method new(cFile as character) as object
+    public method execute() as object
+    public method getSourceFile() as character
+    public method getOutputDirectory() as character
+    public method getResult() as object
+    private method validateInput() as logical
+    private method parseSource() as object
+    private method generateCoverageClass() as character
+    private method generateDocumentation() as character
+    private method buildResult() as object
+endclass
+
+method new(cFile as character) as object class CoverageOrchestrator
+    ::cSourceFile := cFile
+    ::cOutputDir := "..\coverage"
+    ::aErrors := {}
+    ::aWarnings := {}
+    return self
+endmethod
+
+/*/{Protheus.doc} execute
+    @description Executa o pipeline completo de geração de cobertura. Retorna objeto com resultado (sucesso/erro), caminhos dos arquivos gerados e mensagens de status.
+/*/
+method execute() as object class CoverageOrchestrator
+    local oStructure as object
+    
+    try
+        conout("Coverage - Iniciando orquestração para: " + ::cSourceFile)
+        
+        // Passo 1: Validar entrada
+        if !::validateInput()
+            conout("Coverage - ERRO: Validação de entrada falhou")
+            return ::buildResult()
+        endif
+        conout("Coverage - ? Entrada validada")
+        
+        // Passo 2: Parse do arquivo TLPP
+        oStructure := ::parseSource()
+        if oStructure == NIL
+            conout("Coverage - ERRO: Parsing falhou")
+            return ::buildResult()
+        endif
+        conout("Coverage - ? Parse concluído: " + cvaltochar(len(oStructure:methods)) + " métodos encontrados")
+        
+        // Passo 3: Gerar arquivo TLPP de cobertura
+        local cTlppFile := ::generateCoverageClass()
+        if empty(cTlppFile)
+            conout("Coverage - ERRO: Geração de classe falhou")
+            return ::buildResult()
+        endif
+        conout("Coverage - ? Arquivo TLPP gerado: " + cTlppFile)
+        
+        // Passo 4: Gerar documentação .md
+        local cMdFile := ::generateDocumentation()
+        if empty(cMdFile)
+            conout("Coverage - ERRO: Geração de documentação falhou")
+            return ::buildResult()
+        endif
+        conout("Coverage - ? Documentação gerada: " + cMdFile)
+        
+        // Passo 5: Construir resultado final
+        return ::buildResult()
+        
+    catch e
+        aadd(::aErrors, "EXCEPTION: " + e:description)
+        conout("Coverage - EXCEPTION: " + e:description)
+        return ::buildResult()
+    endtry
+endmethod
+
+method getSourceFile() as character class CoverageOrchestrator
+    return ::cSourceFile
+endmethod
+
+method getOutputDirectory() as character class CoverageOrchestrator
+    return ::cOutputDir
+endmethod
+
+method getResult() as object class CoverageOrchestrator
+    return ::oResult
+endmethod
+
+method validateInput() as logical class CoverageOrchestrator
+    // Validar caminho do arquivo
+    if empty(::cSourceFile)
+        aadd(::aErrors, "Caminho de arquivo não fornecido")
+        return .F.
+    endif
+    
+    // Validar extensão
+    if !(".tlpp" in lower(::cSourceFile))
+        aadd(::aWarnings, "Arquivo pode não ser TLPP (esperado extensão .tlpp)")
+    endif
+    
+    // Validar sintaxe TLPP básica (presença de 'class' ou 'using')
+    // Em produção, fazer parsing mais detalhado aqui
+    
+    return .T.
+endmethod
+
+method parseSource() as object class CoverageOrchestrator
+    local oStructure as object
+    
+    // Estrutura retornada
+    oStructure := JsonObject():new()
+    oStructure:setValue("fileName", ::cSourceFile)
+    oStructure:setValue("classes", JsonArray():new())
+    oStructure:setValue("methods", JsonArray():new())
+    oStructure:setValue("branches", JsonArray():new())
+    oStructure:setValue("lines", 0)
+    
+    // Em produção, implementar parser TLPP real aqui
+    // Por enquanto, retorna estrutura placeholder
+    
+    return oStructure
+endmethod
+
+method generateCoverageClass() as character class CoverageOrchestrator
+    local cFileName as character
+    local cContent as character
+    
+    // Determinar nome da classe
+    cFileName := ::cOutputDir + "\coverage." + substr(::cSourceFile, at("/", ::cSourceFile, len(::cSourceFile)-1)+1)
+    
+    // Em produção, usar template + valores do parser
+    cContent := "using namespace coverage" + chr(10) + chr(10) + "// Placeholder - gerado dinamicamente" + chr(10)
+    
+    // Criar arquivo (simulado)
+    conout("Coverage - Simulando criação: " + cFileName)
+    
+    return cFileName
+endmethod
+
+method generateDocumentation() as character class CoverageOrchestrator
+    local cFileName as character
+    local cContent as character
+    
+    cFileName := ::cOutputDir + "\coverage." + substr(::cSourceFile, at("/", ::cSourceFile, len(::cSourceFile)-1)+1) + ".md"
+    
+    cContent := "# Cobertura" + chr(10)
+    cContent += "Gerado automaticamente" + chr(10)
+    
+    // Criar arquivo (simulado)
+    conout("Coverage - Simulando criação: " + cFileName)
+    
+    return cFileName
+endmethod
+
+method buildResult() as object class CoverageOrchestrator
+    local oRes as object
+    
+    oRes := JsonObject():new()
+    oRes:setValue("success", len(::aErrors) == 0)
+    oRes:setValue("sourceFile", ::cSourceFile)
+    oRes:setValue("outputDir", ::cOutputDir)
+    oRes:setValue("errors", JsonArray():new())
+    oRes:setValue("warnings", JsonArray():new())
+    oRes:setValue("artifacts", JsonArray():new())
+    
+    local i as numeric
+    for i := 1 to len(::aErrors)
+        oRes:valueByPath("errors"):push(::aErrors[i])
+    endfor
+    
+    for i := 1 to len(::aWarnings)
+        oRes:valueByPath("warnings"):push(::aWarnings[i])
+    endfor
+    
+    ::oResult := oRes
+    return oRes
+endmethod

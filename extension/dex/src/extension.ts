@@ -4,7 +4,7 @@ const skillsTreeUrl =
   'https://api.github.com/repos/sordi-totvs/dex-protheus/git/trees/main?recursive=1';
 const rawRepositoryUrl =
   'https://raw.githubusercontent.com/sordi-totvs/dex-protheus/main';
-const skillsManifestUrl = `${rawRepositoryUrl}/skills/dex.json`;
+const skillsManifestUrl = `${rawRepositoryUrl}/skills/dex-protheus.json`;
 const skillsChangelogUrl = `${rawRepositoryUrl}/skills/changelog.md`;
 const lastUpdateCheckKey = 'dex.skills.lastUpdateCheckAt';
 const updateCheckIntervalMs = 24 * 60 * 60 * 1000;
@@ -297,7 +297,7 @@ async function fetchSkillsManifest(): Promise<SkillsManifest> {
     typeof manifest.skillsVersion !== 'string' ||
     !isValidSemver(manifest.skillsVersion)
   ) {
-    throw new Error('o dex.json remoto contém uma versão inválida');
+    throw new Error('o dex-protheus.json remoto contém uma versão inválida');
   }
 
   return manifest as SkillsManifest;
@@ -309,7 +309,7 @@ async function readLocalSkillsVersion(
   const manifestUri = vscode.Uri.joinPath(
     context.globalStorageUri,
     'skills',
-    'dex.json',
+    'dex-protheus.json',
   );
 
   try {
@@ -322,7 +322,7 @@ async function readLocalSkillsVersion(
       typeof manifest.skillsVersion !== 'string' ||
       !isValidSemver(manifest.skillsVersion)
     ) {
-      throw new Error('o dex.json local contém uma versão inválida');
+      throw new Error('o dex-protheus.json local contém uma versão inválida');
     }
 
     return manifest.skillsVersion;

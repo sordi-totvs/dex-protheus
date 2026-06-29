@@ -1,0 +1,18 @@
+/*/{Protheus.doc} Coverage{{CLASS_NAME}}_Mock{{API_NAME}}
+    @description Mock simples para {{API_DESCRIPTION}}. Simulação básica sem efeitos colaterais. Usado para cobrir métodos que dependem de {{API_NAME}}.
+    @type class
+    @author coverage-generator
+    @since {{DATE}}
+    @version {{VERSION}}
+/*/
+class Coverage{{CLASS_NAME}}_Mock{{API_NAME}}
+    {{MOCK_PROPERTIES}}
+    public method new() as object
+    {{MOCK_METHODS_DECLARATIONS}}
+endclass
+
+method new() as object class Coverage{{CLASS_NAME}}_Mock{{API_NAME}}
+    return self
+endmethod
+
+{{MOCK_METHODS_IMPLEMENTATIONS}}

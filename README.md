@@ -10,7 +10,7 @@ adiciona essas skills aos workspaces.
 .
 ├── extension/dex/       Extensão Dex para Visual Studio Code
 ├── skills/              Catálogo distribuído pela extensão
-│   ├── dex.json         Versão oficial do catálogo
+│   ├── dex-protheus.json Versão oficial do catálogo
 │   └── changelog.md     Histórico de mudanças das skills
 └── .vscode/             Configuração de build e debug da extensão
 ```
@@ -56,7 +56,7 @@ Ao executar `Dex: Configurar skills`, a extensão baixa o catálogo e o copia pa
 ## Versionamento das skills
 
 O catálogo segue Versionamento Semântico. A propriedade `skillsVersion` em
-[skills/dex.json](skills/dex.json) é a fonte oficial da versão publicada. Toda
+[skills/dex-protheus.json](skills/dex-protheus.json) é a fonte oficial da versão publicada. Toda
 mudança relevante deve ser registrada em
 [skills/changelog.md](skills/changelog.md), seguindo o padrão Keep a Changelog.
 

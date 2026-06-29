@@ -1,0 +1,36 @@
+using namespace coverage
+
+/*/{Protheus.doc} Coverage{{CLASS_NAME}}
+    @description Classe de cobertura de teste para {{ORIGINAL_CLASS}}. Contém métodos numerados {{METHOD_COUNT}} que cobrem todas as linhas e branches do arquivo original. Execute {{STATIC_RUNNER}} para rodar todos os testes em sequência.
+    @type class
+    @author coverage-generator
+    @since {{DATE}}
+    @version {{VERSION}}
+/*/
+class Coverage{{CLASS_NAME}}
+    {{CLASS_DERIVED_DECLARATIONS}}
+    {{CLASS_MOCK_DECLARATIONS}}
+    {{METHODS_DECLARATIONS}}
+    public static method runAllTests() as logical
+endclass
+
+{{CLASS_DERIVED_IMPLEMENTATIONS}}
+
+{{CLASS_MOCK_IMPLEMENTATIONS}}
+
+{{METHODS_IMPLEMENTATIONS}}
+
+method runAllTests() as logical class Coverage{{CLASS_NAME}}
+    local lResult as logical
+    local nCount as numeric
+    local nTotal as numeric
+    
+    lResult := .T.
+    nCount := 0
+    nTotal := {{TOTAL_METHODS}}
+    
+    {{RUNALL_CALLS}}
+    
+    conout("Coverage - Total: " + cvaltochar(nCount) + "/" + cvaltochar(nTotal) + " métodos executados com sucesso")
+    return lResult
+endmethod

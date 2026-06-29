@@ -21,7 +21,7 @@ Semântico.
 ### Adicionado
 
 - Verificação de atualizações do catálogo por meio do `skillsVersion` em
-  `dex.json`.
+  `dex-protheus.json`.
 - Ações para visualizar o changelog, atualizar as skills ou ignorar uma nova
   versão.
 - Confirmação opcional para sincronizar o workspace após uma atualização.
